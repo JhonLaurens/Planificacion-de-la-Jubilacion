@@ -1,0 +1,2189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Interactiva: Reforma Pensional 2024 en Colombia</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Carga de la fuente Inter de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos personalizados */
+        :root {
+            --cb-primary-color: #00305B; /* Azul marino */
+            --cb-secondary-color: #FFDD00; /* Amarillo dorado */
+            --cb-text-color: #202020;
+            --cb-border-radius: 16px;
+            --cb-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #f8fafc; /* bg-slate-50 */
+            color: #1e293b; /* slate-800 */
+        }
+
+        /* Estilos de la barra de navegación */
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--cb-secondary-color);
+        }
+
+        /* Estilo para los títulos de sección */
+        .section-title {
+            border-bottom: 2px solid var(--cb-primary-color);
+            padding-bottom: 0.5rem;
+        }        /* Estilo de las tarjetas de contenido */
+        .card {
+            background-color: white;
+            border-radius: 0.75rem; /* 12px */
+            box-shadow: var(--cb-box-shadow);
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e5e7eb;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Botón primario */
+        .btn-primary {
+            background-color: var(--cb-primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px; /* rounded-full */
+            text-align: center;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .btn-primary:hover {
+            background-color: #001f3d; /* Azul más oscuro */
+            transform: scale(1.05);
+        }
+          /* Animación para la aparición de las barras de resultados */
+        .result-bar {
+            transition: width 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        /* Animaciones y transiciones mejoradas */
+        .fade-in {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .calculator-container {
+            transition: all 0.3s ease;
+        }
+        
+        .calculator-container:focus-within {
+            box-shadow: 0 0 0 3px rgba(0, 48, 91, 0.1);
+        }
+        
+        /* Botón de scroll al inicio */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: var(--cb-primary-color);
+            color: white;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-to-top:hover {
+            transform: translateY(-2px);
+            background-color: #004080;
+        }
+          /* Tooltips */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+        
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 280px;
+            background-color: #1f2937;
+            color: #fff;
+            text-align: left;
+            border-radius: 8px;
+            padding: 12px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -140px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.875rem;
+            line-height: 1.4;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tooltip .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #1f2937 transparent transparent transparent;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        /* Animaciones adicionales para la calculadora */
+        .calc-step {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .calc-step.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .progress-indicator {
+            height: 4px;
+            background-color: #e5e7eb;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #00305B, #FFDD00);
+            width: 0%;
+            transition: width 0.8s ease;
+        }
+        
+        .info-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.5rem;
+            background-color: rgba(0, 48, 91, 0.1);
+            color: #00305B;
+            border-radius: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+        
+        .calculation-breakdown {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-left: 4px solid #00305B;
+        }
+        
+        .highlight-number {
+            background: linear-gradient(135deg, #FFDD00, #f59e0b);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+          /* Mejoras para móviles */
+        @media (max-width: 768px) {
+            .card {
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+            }
+            
+            nav {
+                padding: 0.5rem 1rem;
+            }
+            
+            .nav-link {
+                font-size: 0.875rem;
+                padding: 0.5rem;
+            }
+            
+            .btn-primary {
+                padding: 0.625rem 1.25rem;
+                font-size: 0.875rem;
+            }
+            
+            .tooltip .tooltiptext {
+                width: 240px;
+                margin-left: -120px;
+                font-size: 0.8rem;
+            }
+            
+            .calc-step {
+                padding: 1rem 0;
+            }
+            
+            .calculation-breakdown {
+                margin-bottom: 1rem;
+            }
+            
+            .progress-indicator {
+                margin-bottom: 1rem;
+            }
+        }
+        
+        /* Progress indicator for calculator */
+        .progress-indicator {
+            width: 100%;
+            height: 6px;
+            background-color: #e5e7eb;
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #00305B, #FFDD00);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+        
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        /* Calculator step styling enhancements */
+        .calc-step {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .calc-step.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Enhanced tooltip styling */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .info-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            background-color: #00305B;
+            color: white;
+            border-radius: 50%;
+            font-size: 10px;
+            cursor: help;
+            transition: all 0.3s ease;
+        }
+        
+        .info-badge:hover {
+            background-color: #FFDD00;
+            color: #00305B;
+            transform: scale(1.1);
+        }
+        
+        .tooltiptext {
+            visibility: hidden;
+            width: 280px;
+            background-color: #00305B;
+            color: white;
+            text-align: left;
+            border-radius: 8px;
+            padding: 12px;
+            position: absolute;
+            z-index: 1000;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -140px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            font-size: 13px;
+            line-height: 1.4;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .tooltiptext::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #00305B transparent transparent transparent;
+        }
+        
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(-5px);
+        }
+        
+        /* Enhanced calculation breakdown styling */
+        .calculation-breakdown {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border: 1px solid #cbd5e1;
+            transition: all 0.3s ease;
+        }
+        
+        .calculation-breakdown:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        /* Result bar enhancements */
+        .result-bar {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .result-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.8s ease;
+        }
+        
+        .result-bar:hover::before {
+            left: 100%;
+        }
+        
+        /* Highlight numbers with animation */
+        .highlight-number {
+            background: linear-gradient(45deg, #FFDD00, #fbbf24);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }        /* Salary quick calc button enhancements */
+        .salary-quick-calc {
+            transition: all 0.3s ease;
+            border: 1px solid #f59e0b;
+        }
+        
+        .salary-quick-calc:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: white;
+        }
+        
+        /* Interactive elements for other sections */
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #e2e8f0, #00305B, #FFDD00);
+            border-radius: 2px;
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin: 2rem 0;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .timeline-item.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: 0;
+            margin-right: 50%;
+            padding-right: 2rem;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 50%;
+            margin-right: 0;
+            padding-left: 2rem;
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 1rem;
+            width: 20px;
+            height: 20px;
+            background: #00305B;
+            border: 4px solid white;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 0 4px #e2e8f0;
+            transition: all 0.3s ease;
+        }
+        
+        .timeline-item:hover .timeline-dot {
+            background: #FFDD00;
+            transform: translateX(-50%) scale(1.2);
+        }
+        
+        /* Interactive comparison cards */
+        .comparison-container {
+            perspective: 1000px;
+        }
+        
+        .comparison-card {
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .comparison-card:hover {
+            transform: rotateY(5deg) scale(1.02);
+        }
+        
+        .comparison-card.flipped {
+            transform: rotateY(180deg);
+        }
+        
+        /* Stats counters */
+        .stat-counter {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #00305B;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover .stat-counter {
+            color: #FFDD00;
+            transform: scale(1.1);
+        }
+        
+        /* Interactive icons */
+        .interactive-icon {
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 2rem;
+        }
+        
+        .interactive-icon:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+        
+        /* Accordion styles */
+        .accordion-item {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .accordion-header {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .accordion-header:hover {
+            background: linear-gradient(135deg, #00305B, #001f3d);
+            color: white;
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: white;
+        }
+        
+        .accordion-content.active {
+            max-height: 500px;
+            padding: 1rem;
+        }
+        
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+        
+        /* Progress rings for cesantias */
+        .progress-ring {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+        }
+        
+        .progress-ring svg {
+            transform: rotate(-90deg);
+            width: 100%;
+            height: 100%;
+        }
+        
+        .progress-ring circle {
+            fill: none;
+            stroke-width: 8;
+            stroke-linecap: round;
+        }
+        
+        .progress-ring .bg {
+            stroke: #e2e8f0;
+        }
+        
+        .progress-ring .progress {
+            stroke: #00305B;
+            stroke-dasharray: 283;
+            stroke-dashoffset: 283;
+            transition: stroke-dashoffset 2s ease;
+        }
+        
+        .progress-ring.animate .progress {
+            stroke-dashoffset: calc(283 - (283 * var(--percentage)) / 100);
+        }
+        
+        /* Interactive buttons */
+        .interactive-btn {
+            background: linear-gradient(135deg, #00305B, #001f3d);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .interactive-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,221,0,0.4), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .interactive-btn:hover::before {
+            left: 100%;
+        }
+        
+        .interactive-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,48,91,0.3);
+        }
+        
+        /* Mobile responsiveness for new elements */
+        @media (max-width: 768px) {
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 0;
+                margin-right: 0;
+                padding-left: 3rem;
+                padding-right: 1rem;
+            }
+            
+            .timeline-line {
+                left: 1.5rem;
+            }
+            
+            .timeline-dot {
+                left: 1.5rem;
+            }
+            
+            .comparison-card:hover {
+                transform: none;
+            }
+            
+            .progress-ring {
+                width: 80px;
+                height: 80px;
+            }
+        }
+        
+        /* Welcome message styling */
+        .welcome-message {
+            animation: slideInRight 0.5s ease-out;
+            transition: opacity 0.3s ease;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Screen reader only content */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+        
+        /* Loading states */
+        .loading {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .loading::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: loading-shimmer 1.5s infinite;
+        }
+        
+        @keyframes loading-shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        /* Enhanced input focus states */
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 48, 91, 0.1), 0 0 0 1px #00305B;
+        }
+        
+        /* Improved button states */
+        button:focus {
+            outline: 2px solid #FFDD00;
+            outline-offset: 2px;
+        }
+        
+        /* Enhanced hover effects for better UX */
+        .card:hover .info-badge {
+            background-color: #FFDD00;
+            color: #00305B;
+        }
+        
+        /* Mobile accessibility improvements */
+        @media (max-width: 768px) {
+            .welcome-message {
+                top: 80px;
+                right: 1rem;
+                left: 1rem;
+                max-width: none;
+            }
+            
+            .tooltip .tooltiptext {
+                width: 250px;
+                margin-left: -125px;
+                bottom: 120%;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">    <!-- ========= Barra de Navegación Fija ========= -->
+    <header class="bg-[#00305B] text-white shadow-md fixed w-full z-50 top-0">        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#inicio" class="text-xl font-bold nav-link">Coltefinanciera</a>
+            
+            <!-- Menú para escritorio -->
+            <div class="hidden md:flex space-x-6">
+                <a href="#sistema" class="nav-link">El Sistema</a>
+                <a href="#calculadora" class="nav-link">Calculadora</a>
+                <a href="#cesantias" class="nav-link">Cesantías</a>
+                <a href="#planificacion" class="nav-link">Planificación</a>
+            </div>
+            
+            <!-- Botón hamburguesa para móviles -->
+            <button class="md:hidden focus:outline-none" id="mobileMenuBtn" aria-label="Abrir menú">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </nav>
+        
+        <!-- Menú móvil -->
+        <div class="md:hidden bg-[#00305B] border-t border-[#004080] hidden" id="mobileMenu">
+            <div class="px-6 py-4 space-y-3">
+                <a href="#sistema" class="block nav-link mobile-nav-link">El Sistema</a>
+                <a href="#calculadora" class="block nav-link mobile-nav-link">Calculadora</a>
+                <a href="#cesantias" class="block nav-link mobile-nav-link">Cesantías</a>
+                <a href="#planificacion" class="block nav-link mobile-nav-link">Planificación</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 pt-24 pb-12">        <!-- ========= Sección de Portada (Inicio) ========= -->
+        <section id="inicio" class="min-h-[80vh] flex flex-col items-center justify-center text-center py-12">
+            <div class="bg-gradient-to-br from-[#00305B] to-[#001f3d] p-10 md:p-16 rounded-xl shadow-2xl text-white w-full max-w-4xl">                <h1 class="text-4xl md:text-6xl font-bold mb-4 text-[#FFDD00]">Entiende la Reforma Pensional</h1>
+                <p class="text-xl md:text-2xl mb-8 text-[#FFDD00]">Una guía interactiva sobre la Ley 2381 de 2024</p>
+                <a href="https://www.coltefinanciera.com.co/" target="_blank" rel="noopener noreferrer">
+                    <img src="https://placehold.co/150x50/FFFFFF/00305B?text=Coltefinanciera&font=Inter" alt="Logo Coltefinanciera" class="mx-auto mb-8 h-12" onerror="this.alt='Logo Coltefinanciera'; this.src='https://placehold.co/150x50/FFFFFF/00305B?text=Logo+Coltefinanciera&font=Inter';">
+                </a>
+                <p class="text-lg mb-10">La Ley 2381 de 2024, promulgada el 16 de julio de 2024, entra en vigencia el 1 de julio de 2025. Te explicamos de forma sencilla qué significa para ti y cómo planificar tu futuro.</p>
+                <a href="#calculadora" class="btn-primary">
+                    Calcula tu Aporte
+                </a>
+            </div>
+        </section>
+
+        <!-- ========= Sección 1: La Estructura del Sistema Pensional ========= -->
+        <section id="sistema" class="py-16">            <h2 class="text-3xl font-bold mb-8 text-[#00305B] section-title">Del Sistema Actual al Nuevo Modelo</h2>
+            <p class="mb-12 text-lg text-slate-700 max-w-3xl mx-auto text-center">La Ley 2381 de 2024 "POR MEDIO DE LA CUAL SE ESTABLECE EL SISTEMA DE PROTECCIÓN SOCIAL INTEGRAL PARA LA VEJEZ, INVALIDEZ Y MUERTE DE ORIGEN COMÚN" busca complementar los regímenes existentes para ampliar la cobertura. Así es como funciona:</p>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="text-2xl font-semibold mb-4 text-red-700">Antes de la Reforma</h3>
+                    <p class="text-slate-700 mb-4">Existían dos regímenes para las cotizaciones obligatorias, que eran <strong class="font-semibold">excluyentes entre sí</strong>:</p>
+                    <ul class="space-y-4 text-slate-700">
+                        <li><strong class="font-semibold text-red-700">Régimen de Prima Media (RPM):</strong> Administrado por Colpensiones. Un fondo común que garantiza una pensión definida por ley.</li>
+                        <li><strong class="font-semibold text-red-700">Régimen de Ahorro Individual (RAIS):</strong> Gestionado por Fondos Privados (AFP). Tu pensión depende de tu ahorro individual y sus rendimientos.</li>
+                    </ul>
+                </div>
+                <div class="card bg-[#00305B] text-white">
+                    <h3 class="text-2xl font-semibold mb-4 text-[#FFDD00]">A partir del 1 de julio de 2025</h3>
+                    <p class="text-slate-200 mb-4">El nuevo sistema es <strong class="font-semibold text-white">complementario</strong> y se basa en 4 pilares:</p>
+                     <ul class="space-y-3 text-slate-200">
+                        <li class="flex items-start"><strong class="font-bold text-xl mr-3 text-[#FFDD00]">🤝</strong> <div><strong class="font-semibold">Solidario:</strong> Renta básica para mayores en pobreza extrema.</div></li>
+                        <li class="flex items-start"><strong class="font-bold text-xl mr-3 text-[#FFDD00]">🌱</strong> <div><strong class="font-semibold">Semicontributivo:</strong> Beneficio para quienes no alcanzaron a pensionarse.</div></li>
+                        <li class="flex items-start"><strong class="font-bold text-xl mr-3 text-[#FFDD00]">💼</strong> <div><strong class="font-semibold">Contributivo:</strong> Aquí cotizamos todos los trabajadores.</div></li>
+                        <li class="flex items-start"><strong class="font-bold text-xl mr-3 text-[#FFDD00]">💰</strong> <div><strong class="font-semibold">Ahorro Voluntario:</strong> Para quienes deseen complementar su pensión.</div></li>
+                    </ul>
+                </div>
+            </div>            <div class="mt-12">
+                <h3 class="text-2xl font-bold mb-6 text-center text-[#00305B]">Línea de Tiempo de la Reforma</h3>
+                <div class="timeline-container mb-12">
+                    <div class="timeline-line"></div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="card">
+                                <div class="flex items-center mb-2">
+                                    <span class="interactive-icon">📅</span>
+                                    <h4 class="font-bold text-lg ml-3 text-[#00305B]">Antes de Julio 2025</h4>
+                                </div>
+                                <p class="text-slate-600 text-sm">Sistema dual excluyente: RPM vs RAIS. Los trabajadores debían elegir uno u otro régimen.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="card">
+                                <div class="flex items-center mb-2">
+                                    <span class="interactive-icon">🎯</span>
+                                    <h4 class="font-bold text-lg ml-3 text-[#00305B]">1 de Julio 2025</h4>
+                                </div>
+                                <p class="text-slate-600 text-sm">Inicio del nuevo sistema complementario. División automática de aportes según salario.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="card">
+                                <div class="flex items-center mb-2">
+                                    <span class="interactive-icon">⚖️</span>
+                                    <h4 class="font-bold text-lg ml-3 text-[#00305B]">2025-2027</h4>
+                                </div>
+                                <p class="text-slate-600 text-sm">Período de transición con doble asesoría para quienes califiquen. Reducción gradual de semanas para mujeres.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <div class="card">
+                                <div class="flex items-center mb-2">
+                                    <span class="interactive-icon">🎊</span>
+                                    <h4 class="font-bold text-lg ml-3 text-[#00305B]">2036 en adelante</h4>
+                                </div>
+                                <p class="text-slate-600 text-sm">Sistema completamente implementado. Mujeres necesitarán solo 1.000 semanas para pensión.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12">
+                <h3 class="text-2xl font-bold mb-6 text-center text-[#00305B]">Detalles Clave de la Nueva Reforma</h3>                <div class="max-w-4xl mx-auto space-y-4">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <div class="flex items-center">
+                                <span class="interactive-icon mr-3">🔄</span>
+                                <span class="font-bold text-lg">Régimen de Transición</span>
+                            </div>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="text-slate-600">Aplica para <strong class="font-semibold">mujeres con 750 semanas o más</strong> y <strong class="font-semibold">hombres con 900 semanas o más</strong> cotizadas al 30 de junio de 2025. A estas personas no se les aplicarán las nuevas disposiciones. Además, quienes estén en este régimen y les falten menos de 10 años para la edad de pensión, tienen una ventana de 2 años para trasladarse de régimen si lo desean, con doble asesoría.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <div class="flex items-center">
+                                <span class="interactive-icon mr-3">📊</span>
+                                <span class="font-bold text-lg">Requisitos de Edad y Semanas</span>
+                            </div>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="text-slate-600 mb-3">Se mantienen los requisitos de edad (57 años para mujeres, 62 para hombres) y las 1.300 semanas para el pilar contributivo. Sin embargo, para las mujeres, las semanas requeridas <strong class="font-semibold">disminuirán gradualmente desde 2025</strong>, partiendo de 1.275 y llegando a 1.000 en 2036.</p>
+                            <div class="bg-blue-50 p-3 rounded-lg">
+                                <h5 class="font-semibold text-blue-800">Cronograma para Mujeres:</h5>
+                                <ul class="text-sm text-blue-600 mt-2 space-y-1">
+                                    <li>• 2025: 1.275 semanas</li>
+                                    <li>• 2030: 1.150 semanas</li>
+                                    <li>• 2036: 1.000 semanas</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <div class="flex items-center">
+                                <span class="interactive-icon mr-3">🤝</span>
+                                <span class="font-bold text-lg">Fondo de Solidaridad Pensional</span>
+                            </div>
+                            <span class="accordion-icon">▼</span>
+                        </div>                        <div class="accordion-content">
+                            <p class="text-slate-600 mb-3">El aporte a este fondo será progresivo según el nivel de ingresos:</p>
+                            <div class="bg-green-50 p-3 rounded-lg">
+                                <h5 class="font-semibold text-green-800 mb-2">Aportes Adicionales por IBC:</h5>
+                                <ul class="text-sm text-green-600 space-y-1">
+                                    <li>• 4 a 6.9 SMMLV: 1.5% adicional</li>
+                                    <li>• 7 a 10.9 SMMLV: 1.8% adicional</li>
+                                    <li>• 11 a 18.9 SMMLV: 2.5% adicional</li>
+                                    <li>• 19 a 19.9 SMMLV: 2.8% adicional</li>
+                                    <li>• 20 SMMLV o más: 3.0% adicional</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <div class="flex items-center">
+                                <span class="interactive-icon mr-3">⏰</span>
+                                <span class="font-bold text-lg">Pensión Anticipada</span>
+                            </div>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="text-slate-600">Se abren nuevas opciones para pensión anticipada:</p>
+                            <ul class="text-slate-600 mt-2 space-y-2">
+                                <li class="flex items-start"><span class="text-blue-600 mr-2">👪</span> Madres o padres con hijos en condición de invalidez</li>
+                                <li class="flex items-start"><span class="text-blue-600 mr-2">👩‍👧‍👦</span> Madres cabeza de familia</li>
+                                <li class="flex items-start"><span class="text-blue-600 mr-2">🎂</span> Personas con 65 años (hombres) o 62 (mujeres) que tengan más de 1.000 semanas pero menos de 1.300</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <div class="flex items-center">
+                                <span class="interactive-icon mr-3">🔄</span>
+                                <span class="font-bold text-lg">Sistema de Equivalencias</span>
+                            </div>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="text-slate-600">Con el nuevo <strong class="font-semibold">sistema actuarial de equivalencias</strong>, si no se alcanza el mínimo de semanas, se podrán usar los recursos ahorrados en el componente de ahorro individual (en las AFP) para acreditar semanas en el componente de prima media (Colpensiones).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <div class="flex items-center">
+                                <span class="interactive-icon mr-3">📄</span>
+                                <span class="font-bold text-lg">Cotización de Contratistas</span>
+                            </div>
+                            <span class="accordion-icon">▼</span>
+                        </div>
+                        <div class="accordion-content">
+                            <p class="text-slate-600">Bajo la reforma, los <strong class="font-semibold">contratantes</strong> de prestación de servicios serán los encargados de descontar y pagar directamente la cotización pensional de sus contratistas, simplificando el proceso y garantizando el cumplimiento.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>        <!-- ========= Sección 2: Calculadora Interactiva del Pilar Contributivo ========= -->
+        <section id="calculadora" class="py-16">
+            <h2 class="text-3xl font-bold mb-8 text-[#00305B] section-title">Calculadora del Pilar Contributivo</h2>
+            <p class="mb-12 text-lg text-slate-700 max-w-3xl mx-auto text-center">Este es el cambio más importante. Si ganas más de 2.3 salarios mínimos, tu cotización se divide. Ingresa tu Ingreso Base de Cotización (IBC) para ver cómo funciona.</p>
+            
+            <!-- Indicador de progreso -->
+            <div class="max-w-4xl mx-auto mb-8">
+                <div class="progress-indicator">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>                <div class="flex justify-between items-center mt-2 text-sm text-slate-600">
+                    <span>📊 Ingresa tu salario</span>
+                    <span>💡 Revisa los resultados</span>
+                    <span>🎯 Entiende tu cotización</span>
+                </div>
+                <div class="text-center mt-2">
+                    <span id="calc-status" class="text-xs text-slate-500" aria-live="polite">Listo para calcular</span>
+                </div>
+            </div>
+            
+            <div class="card max-w-6xl mx-auto">
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <!-- Input del usuario -->
+                    <div class="lg:col-span-1 space-y-6">
+                        <div class="calc-step active" id="step1">
+                            <h3 class="text-xl font-semibold mb-4 text-[#00305B] flex items-center">
+                                💰 Tu Información Salarial
+                                <div class="tooltip">
+                                    <span class="info-badge ml-2">ℹ️</span>
+                                    <span class="tooltiptext">El IBC es la base sobre la cual se calculan tus aportes a pensión. Incluye tu salario básico más auxilio de transporte si es aplicable.</span>
+                                </div>
+                            </h3>                            <div>
+                                <label for="salario" class="block text-sm font-medium text-gray-700 mb-2">Tu Ingreso Base de Cotización (IBC) Mensual</label>
+                                <div class="relative">
+                                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500 text-lg">$</span>
+                                    <input 
+                                        type="text" 
+                                        id="salario" 
+                                        class="w-full pl-8 pr-4 py-4 text-xl border-2 border-slate-300 rounded-lg shadow-sm focus:ring-2 focus:ring-[#00305B] focus:border-[#00305B] transition" 
+                                        placeholder="3.000.000"
+                                        aria-describedby="salario-help error-message"
+                                        aria-label="Ingreso Base de Cotización mensual en pesos colombianos"
+                                    >
+                                </div>
+                            </div>
+                            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200" id="salario-help">
+                                <p class="text-sm text-blue-800">
+                                    <strong>💡 Dato clave:</strong> SMLMV 2025 estimado: <strong id="smlmv-display" class="font-semibold highlight-number"></strong>
+                                </p>
+                                <p class="text-xs text-blue-600 mt-1">El umbral de división está en 2.3 SMLMV = <strong id="umbral-display" class="font-semibold"></strong></p>
+                            </div>
+                            <div id="error-message" class="text-center text-red-600 font-semibold h-5" role="alert" aria-live="polite"></div>
+                        </div>                        <!-- Nueva sección: Desglose de aportes -->
+                        <div class="calc-step" id="step2">
+                            <h3 class="text-xl font-semibold mb-4 text-[#00305B]">📋 Desglose de Aportes</h3>
+                            <div class="space-y-3" id="contribution-breakdown">
+                                <div class="flex justify-between items-center p-3 bg-slate-50 rounded-lg">
+                                    <span class="text-sm font-medium">Aporte total pensión (16%)</span>
+                                    <span id="total-contribution" class="font-bold text-[#00305B]">$0</span>
+                                </div>
+                                <div class="pl-4 space-y-2">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-xs text-slate-600">• Empleado (4%)</span>
+                                        <span id="employee-contribution" class="text-xs font-medium">$0</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-xs text-slate-600">• Empleador (12%)</span>
+                                        <span id="employer-contribution" class="text-xs font-medium">$0</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Resultados visuales -->
+                    <div class="lg:col-span-2">
+                        <div id="results-container" class="space-y-6 opacity-0 transition-opacity duration-500">
+                            <div class="calc-step" id="step3">
+                                <h3 class="text-xl font-bold text-center text-[#00305B] mb-4">🎯 Así se distribuye tu base de cotización:</h3>
+                                
+                                <!-- Gráfico visual mejorado -->
+                                <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+                                    <div class="w-full bg-slate-200 rounded-full h-12 flex overflow-hidden shadow-inner mb-4">
+                                        <div id="colpensiones-bar" class="result-bar bg-gradient-to-r from-blue-600 to-blue-500 h-12 text-white text-sm flex items-center justify-center font-bold transition-all duration-700" style="width: 0%;">
+                                            <span id="colpensiones-percent"></span>
+                                        </div>
+                                        <div id="afp-bar" class="result-bar bg-gradient-to-r from-green-500 to-green-400 h-12 text-white text-sm flex items-center justify-center font-bold transition-all duration-700" style="width: 0%;">
+                                            <span id="afp-percent"></span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Leyenda mejorada -->
+                                    <div class="flex flex-wrap justify-center gap-4 text-sm">
+                                        <div class="flex items-center">
+                                            <div class="w-4 h-4 bg-gradient-to-r from-blue-600 to-blue-500 rounded mr-2"></div>
+                                            <span>Colpensiones (Prima Media)</span>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <div class="w-4 h-4 bg-gradient-to-r from-green-500 to-green-400 rounded mr-2"></div>
+                                            <span>Fondo Privado (Ahorro Individual)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Detalles financieros -->
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="calculation-breakdown p-4 rounded-lg">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <div class="flex items-center">
+                                                <span class="w-3 h-3 bg-blue-600 rounded-full mr-3"></span>
+                                                <span class="font-semibold text-slate-700">Base Colpensiones</span>
+                                                <div class="tooltip">
+                                                    <span class="info-badge ml-1">?</span>
+                                                    <span class="tooltiptext">Máximo 2.3 SMLMV van a Colpensiones. Garantiza una pensión mínima definida por ley.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span id="colpensiones-amount" class="text-2xl font-bold text-[#00305B] block"></span>
+                                        <p class="text-xs text-slate-500 mt-1" id="colpensiones-detail"></p>
+                                    </div>
+                                    
+                                    <div class="calculation-breakdown p-4 rounded-lg">
+                                        <div class="flex items-center justify-between mb-2">
+                                            <div class="flex items-center">
+                                                <span class="w-3 h-3 bg-green-500 rounded-full mr-3"></span>
+                                                <span class="font-semibold text-slate-700">Base Fondo Privado</span>
+                                                <div class="tooltip">
+                                                    <span class="info-badge ml-1">?</span>
+                                                    <span class="tooltiptext">El excedente sobre 2.3 SMLMV va a tu cuenta individual. Genera rendimientos según el desempeño del fondo.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span id="afp-amount" class="text-2xl font-bold text-green-700 block"></span>
+                                        <p class="text-xs text-slate-500 mt-1" id="afp-detail"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Información contextual -->
+                            <div class="calc-step" id="step4">
+                                <div class="bg-gradient-to-r from-[#00305B] to-[#001f3d] p-6 rounded-xl text-white">
+                                    <h4 class="text-lg font-bold mb-3 text-[#FFDD00]">📊 Análisis de tu Situación</h4>
+                                    <p id="info-message" class="text-slate-200 text-sm leading-relaxed"></p>
+                                    
+                                    <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                                        <div class="bg-white/10 p-3 rounded-lg">
+                                            <p class="font-semibold text-[#FFDD00] mb-1">🏛️ En Colpensiones:</p>
+                                            <p id="colpensiones-info" class="text-xs text-slate-200"></p>
+                                        </div>
+                                        <div class="bg-white/10 p-3 rounded-lg">
+                                            <p class="font-semibold text-[#FFDD00] mb-1">💼 En Fondo Privado:</p>
+                                            <p id="afp-info" class="text-xs text-slate-200"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Simulador adicional -->
+                            <div class="calc-step" id="step5">
+                                <div class="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
+                                    <h4 class="text-lg font-semibold mb-3 text-yellow-800">🚀 ¿Qué pasaría si tu salario cambia?</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+                                        <button class="salary-quick-calc px-3 py-2 bg-yellow-100 hover:bg-yellow-200 rounded-lg transition-colors" data-multiplier="0.8">
+                                            📉 -20% salario
+                                        </button>
+                                        <button class="salary-quick-calc px-3 py-2 bg-yellow-100 hover:bg-yellow-200 rounded-lg transition-colors" data-multiplier="1.2">
+                                            📈 +20% salario
+                                        </button>
+                                        <button class="salary-quick-calc px-3 py-2 bg-yellow-100 hover:bg-yellow-200 rounded-lg transition-colors" data-multiplier="1.5">
+                                            🚀 +50% salario
+                                        </button>
+                                    </div>
+                                    <div id="quick-calc-result" class="mt-3 text-sm text-yellow-700 hidden"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+          <!-- ========= Sección 3: Las Cesantías como Respaldo Financiero ========= -->
+        <section id="cesantias" class="py-16">
+            <h2 class="text-3xl font-bold mb-8 text-[#00305B] section-title">Las Cesantías: Tu Respaldo Financiero</h2>
+            <p class="mb-12 text-lg text-slate-700 max-w-3xl mx-auto text-center">Más allá de la pensión, las cesantías son un ahorro fundamental para todo trabajador. Entiende cómo funcionan y cómo puedes usarlas a tu favor.</p>
+            
+            <!-- Estadísticas visuales -->
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="text-center stat-item">
+                    <div class="progress-ring" style="--percentage: 85">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" class="bg"></circle>
+                            <circle cx="50" cy="50" r="45" class="progress"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="stat-counter" data-target="85">0</span>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold mt-4 text-[#00305B]">% de Trabajadores</h3>
+                    <p class="text-slate-600 text-sm">que tienen derecho a cesantías</p>
+                </div>
+                
+                <div class="text-center stat-item">
+                    <div class="progress-ring" style="--percentage: 12">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" class="bg"></circle>
+                            <circle cx="50" cy="50" r="45" class="progress"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="stat-counter" data-target="12">0</span>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold mt-4 text-[#00305B]">% Interés Anual</h3>
+                    <p class="text-slate-600 text-sm">que pagan sobre cesantías</p>
+                </div>
+                
+                <div class="text-center stat-item">
+                    <div class="progress-ring" style="--percentage: 67">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="45" class="bg"></circle>
+                            <circle cx="50" cy="50" r="45" class="progress"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="stat-counter" data-target="67">0</span>
+                        </div>
+                    </div>
+                    <h3 class="text-lg font-semibold mt-4 text-[#00305B]">% para Vivienda</h3>
+                    <p class="text-slate-600 text-sm">principal uso de cesantías</p>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card">
+                    <div class="flex items-center mb-4">
+                        <span class="interactive-icon">🤔</span>
+                        <h3 class="text-xl font-semibold ml-3 text-[#00305B]">¿Qué Son?</h3>
+                    </div>
+                    <p class="text-slate-600">Una prestación social que tu empleador debe pagarte. Corresponde a <strong class="font-semibold">un mes de salario por cada año trabajado</strong>. Su objetivo principal es servir como un auxilio monetario si llegas a quedar desempleado.</p>
+                    <button class="interactive-btn mt-4" onclick="showCesantiasCalculator()">
+                        Calcular mis Cesantías
+                    </button>
+                </div>
+                
+                <div class="card">
+                    <div class="flex items-center mb-4">
+                        <span class="interactive-icon">💰</span>
+                        <h3 class="text-xl font-semibold ml-3 text-[#00305B]">Ahorro y Consignación</h3>
+                    </div>                    <p class="text-slate-600">Tu empleador debe consignar tus cesantías en un Fondo de Cesantías de tu elección, a más tardar el <strong class="font-semibold">14 de febrero</strong> de cada año. Además, te deben pagar directamente a ti unos intereses del 12% anual sobre el saldo acumulado a 31 de diciembre, a más tardar el <strong class="font-semibold">31 de enero</strong>.</p>
+                    <div class="bg-yellow-50 p-3 rounded-lg mt-3 border border-yellow-200">
+                        <p class="text-yellow-800 text-sm font-semibold">📅 Fechas límite: 31 de enero (intereses) | 14 de febrero (cesantías)</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="flex items-center mb-4">
+                        <span class="interactive-icon">📋</span>
+                        <h3 class="text-xl font-semibold ml-3 text-[#00305B]">Usos Permitidos</h3>
+                    </div>
+                    <p class="text-slate-600 mb-3">Solo puedes retirarlas en situaciones específicas:</p>
+                    <div class="space-y-2">
+                        <div class="flex items-center p-2 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
+                            <span class="text-red-500 mr-3">🚫</span>
+                            <span class="text-sm">Al quedar desempleado</span>
+                        </div>
+                        <div class="flex items-center p-2 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
+                            <span class="text-blue-500 mr-3">🏠</span>
+                            <span class="text-sm">Compra, construcción o mejora de vivienda</span>
+                        </div>
+                        <div class="flex items-center p-2 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
+                            <span class="text-green-500 mr-3">🎓</span>
+                            <span class="text-sm">Educación superior (tuya, cónyuge o hijos)</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card lg:col-span-3">
+                    <div class="flex items-center mb-4">
+                        <span class="interactive-icon">📊</span>
+                        <h3 class="text-xl font-semibold ml-3 text-[#00305B]">Multiportafolios: ¿Cómo se invierte tu dinero?</h3>
+                    </div>
+                    <p class="text-slate-600 mb-6">Puedes elegir cómo se invierten tus cesantías según tu perfil de riesgo:</p>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="comparison-card p-4 border border-slate-200 rounded-lg cursor-pointer hover:shadow-lg transition-all">
+                            <div class="flex items-center justify-between mb-3">
+                                <h4 class="font-semibold text-[#00305B]">Portafolio de Corto Plazo</h4>
+                                <span class="text-2xl">🛡️</span>
+                            </div>
+                            <p class="text-sm text-slate-600 mb-3">Ideal si planeas retirar tu dinero en menos de un año. Es más conservador para proteger tu capital.</p>
+                            <div class="space-y-2 text-xs">
+                                <div class="flex justify-between">
+                                    <span>Riesgo:</span>
+                                    <span class="font-semibold text-green-600">Bajo</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Rentabilidad esperada:</span>
+                                    <span class="font-semibold">4-6% anual</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Horizonte:</span>
+                                    <span class="font-semibold">< 1 año</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="comparison-card p-4 border border-slate-200 rounded-lg cursor-pointer hover:shadow-lg transition-all">
+                            <div class="flex items-center justify-between mb-3">
+                                <h4 class="font-semibold text-[#00305B]">Portafolio de Largo Plazo</h4>
+                                <span class="text-2xl">🚀</span>
+                            </div>
+                            <p class="text-sm text-slate-600 mb-3">Recomendado si no necesitas el dinero pronto. Busca mayores rendimientos, asumiendo un riesgo moderado.</p>
+                            <div class="space-y-2 text-xs">
+                                <div class="flex justify-between">
+                                    <span>Riesgo:</span>
+                                    <span class="font-semibold text-yellow-600">Moderado</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Rentabilidad esperada:</span>
+                                    <span class="font-semibold">7-10% anual</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Horizonte:</span>
+                                    <span class="font-semibold">> 1 año</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                        <h5 class="font-semibold text-blue-800 mb-2">💡 Consejo de experto:</h5>
+                        <p class="text-blue-700 text-sm">Si no tienes una necesidad inmediata de usar tus cesantías, el portafolio de largo plazo puede generar mejores rendimientos para hacer crecer tu dinero.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Calculadora de cesantías (modal oculto) -->
+            <div id="cesantias-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+                <div class="bg-white p-6 rounded-xl max-w-md w-full mx-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-bold text-[#00305B]">Calculadora de Cesantías</h3>
+                        <button onclick="closeCesantiasCalculator()" class="text-gray-500 hover:text-gray-700">✕</button>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Salario mensual</label>
+                            <input type="text" id="cesantias-salary" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="$1.500.000">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Tiempo trabajado (años)</label>
+                            <input type="number" id="cesantias-years" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="2.5" step="0.1">
+                        </div>
+                        <button onclick="calculateCesantias()" class="w-full interactive-btn">Calcular</button>
+                        <div id="cesantias-result" class="hidden p-3 bg-green-50 rounded-lg border border-green-200">
+                            <p class="text-green-800 text-sm font-semibold" id="cesantias-amount"></p>
+                            <p class="text-green-600 text-xs mt-1" id="cesantias-interest"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>        <!-- ========= Sección 4: Planificación, Ahorro y Asesoría ========= -->
+        <section id="planificacion" class="py-16">
+            <h2 class="text-3xl font-bold mb-8 text-[#00305B] section-title">Planifica tu Futuro: Ahorro y Asesoría</h2>
+            <p class="mb-12 text-lg text-slate-700 max-w-3xl mx-auto text-center">Tu pensión obligatoria es la base. Construye sobre ella para asegurar la jubilación que deseas.</p>
+            
+            <!-- Herramienta interactiva de planificación -->
+            <div class="card max-w-4xl mx-auto mb-12">
+                <h3 class="text-2xl font-semibold mb-6 text-[#00305B] text-center">🎯 Simulador de Ahorro para la Jubilación</h3>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Tu edad actual</label>
+                            <input type="number" id="current-age" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="30" min="18" max="60">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Salario actual mensual</label>
+                            <input type="text" id="current-salary" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="$3.000.000">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Ahorro voluntario mensual deseado</label>
+                            <input type="text" id="voluntary-saving" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="$200.000">
+                        </div>
+                        <button onclick="calculateRetirement()" class="w-full interactive-btn">
+                            Calcular mi Proyección
+                        </button>
+                    </div>
+                    
+                    <div id="retirement-results" class="space-y-4 opacity-0 transition-opacity duration-500">
+                        <div class="bg-gradient-to-r from-[#00305B] to-[#001f3d] p-4 rounded-lg text-white">
+                            <h4 class="font-bold mb-2 text-[#FFDD00]">📊 Tu Proyección</h4>
+                            <div class="space-y-2 text-sm">
+                                <div class="flex justify-between">
+                                    <span>Años hasta jubilación:</span>
+                                    <span id="years-to-retirement" class="font-bold">-</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Ahorro voluntario total:</span>
+                                    <span id="total-voluntary" class="font-bold">-</span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Aportes obligatorios:</span>
+                                    <span id="total-mandatory" class="font-bold">-</span>
+                                </div>
+                                <div class="flex justify-between border-t border-white/20 pt-2 mt-2">
+                                    <span>Capital estimado:</span>
+                                    <span id="estimated-capital" class="font-bold text-[#FFDD00]">-</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                            <h5 class="font-semibold text-yellow-800 mb-2">💡 Recomendación personalizada:</h5>
+                            <p id="personalized-advice" class="text-yellow-700 text-sm"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="card">
+                    <div class="flex items-center mb-4">
+                        <span class="interactive-icon">⚠️</span>
+                        <h3 class="text-2xl font-semibold ml-3 text-[#00305B]">La Importancia Crítica de Planificar</h3>
+                    </div>
+                    <p class="text-slate-700 mb-4">Una mala planificación o una cotización errada pueden tener consecuencias desfavorables, como no alcanzar una pensión o recibir menos de lo esperado. Planificar te permite <strong class="font-semibold">tomar el control, evitar sorpresas y aprovechar beneficios tributarios</strong>.</p>
+                    
+                    <div class="mt-4 p-4 bg-slate-100 rounded-lg">
+                        <h4 class="font-semibold text-slate-800 flex items-center">
+                            <span class="interactive-icon mr-2">📈</span>
+                            Cultura del Ahorro en Colombia
+                        </h4>
+                        <div class="grid grid-cols-2 gap-4 mt-3">
+                            <div class="text-center">
+                                <div class="stat-counter text-red-600" data-target="15.2">0</div>
+                                <p class="text-xs text-slate-600">% población ahorra</p>
+                            </div>
+                            <div class="text-center">
+                                <div class="stat-counter text-green-600" data-target="52.4">0</div>
+                                <p class="text-xs text-slate-600">% ahorra para vejez</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-slate-600 mt-3">Según el DANE (2021). Fomentar este hábito es clave para cumplir tus metas.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="flex items-center mb-4">
+                        <span class="interactive-icon">💪</span>
+                        <h3 class="text-2xl font-semibold ml-3 text-[#00305B]">El Poder del Ahorro Voluntario</h3>
+                    </div>
+                    <p class="text-slate-700 mb-4">Es una herramienta flexible para <strong class="font-semibold">complementar tu pensión</strong>. Puedes hacer aportes adicionales para incrementar tu capital y, potencialmente, tu mesada futura.</p>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center p-3 bg-green-50 rounded-lg border border-green-200 hover:bg-green-100 transition-colors">
+                            <span class="text-green-600 mr-3">📈</span>
+                            <span class="text-sm font-medium">Incrementa el monto de tu pensión</span>
+                        </div>
+                        <div class="flex items-center p-3 bg-blue-50 rounded-lg border border-blue-200 hover:bg-blue-100 transition-colors">
+                            <span class="text-blue-600 mr-3">🎯</span>
+                            <span class="text-sm font-medium">Ofrece posibles beneficios tributarios</span>
+                        </div>
+                        <div class="flex items-center p-3 bg-purple-50 rounded-lg border border-purple-200 hover:bg-purple-100 transition-colors">
+                            <span class="text-purple-600 mr-3">💰</span>
+                            <span class="text-sm font-medium">Genera rendimientos sobre tu capital</span>
+                        </div>
+                    </div>
+                    
+                    <button class="interactive-btn mt-4 w-full" onclick="showVoluntaryCalculator()">
+                        Calcular Beneficios
+                    </button>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="flex items-center mb-4">
+                    <span class="interactive-icon">🤝</span>
+                    <h3 class="text-2xl font-semibold ml-3 text-[#00305B]">La Importancia de una Buena Asesoría</h3>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <p class="text-slate-700 mb-4">Tomar decisiones sobre tu pensión es crucial. La ley promueve la <strong class="font-semibold">"doble asesoría"</strong>, un derecho que tienes para recibir información de ambos regímenes (público y privado) antes de decidir un traslado.</p>
+                        <p class="text-slate-700">Busca siempre la orientación de <strong class="font-semibold">expertos financieros</strong> para elegir el camino que más te beneficie.</p>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <h4 class="font-semibold text-[#00305B]">🔍 Aspectos clave a evaluar:</h4>
+                        <div class="space-y-2">
+                            <div class="flex items-start p-2 bg-slate-50 rounded-lg">
+                                <span class="text-blue-600 mr-2 mt-1">✓</span>
+                                <span class="text-sm">Tu historia laboral y semanas cotizadas</span>
+                            </div>
+                            <div class="flex items-start p-2 bg-slate-50 rounded-lg">
+                                <span class="text-blue-600 mr-2 mt-1">✓</span>
+                                <span class="text-sm">Proyecciones de ingresos futuros</span>
+                            </div>
+                            <div class="flex items-start p-2 bg-slate-50 rounded-lg">
+                                <span class="text-blue-600 mr-2 mt-1">✓</span>
+                                <span class="text-sm">Tolerancia al riesgo de inversión</span>
+                            </div>
+                            <div class="flex items-start p-2 bg-slate-50 rounded-lg">
+                                <span class="text-blue-600 mr-2 mt-1">✓</span>
+                                <span class="text-sm">Beneficios adicionales por familia</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                  <div class="mt-6 p-4 bg-[#00305B] rounded-lg text-white">                    <h4 class="font-bold mb-2 text-[#FFDD00]">📞 ¿Necesitas productos de ahorro para la reforma pensional?</h4>
+                    <p class="text-slate-200 text-sm mb-3">Descubre los productos especializados de Coltefinanciera diseñados para ayudarte a ahorrar e invertir ante los cambios de la reforma pensional.</p><a href="https://api.whatsapp.com/message/FHJFAPESCA2NG1?autoload=1&app_absent=0" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       class="interactive-btn bg-[#FFDD00] text-[#FFDD00] hover:bg-yellow-300 inline-flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.465 3.516"/>
+                        </svg>
+                        ColteBot - Chat en linea
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Modal para calculadora de ahorro voluntario -->
+            <div id="voluntary-modal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+                <div class="bg-white p-6 rounded-xl max-w-lg w-full mx-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-lg font-bold text-[#00305B]">Calculadora de Ahorro Voluntario</h3>
+                        <button onclick="closeVoluntaryCalculator()" class="text-gray-500 hover:text-gray-700">✕</button>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Ahorro mensual</label>
+                            <input type="text" id="monthly-voluntary" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="$150.000">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Años de ahorro</label>
+                            <input type="number" id="saving-years" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="25" min="1" max="40">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Rentabilidad esperada (%)</label>
+                            <input type="number" id="expected-return" class="w-full p-3 border border-gray-300 rounded-lg" placeholder="8" min="1" max="15" step="0.1">
+                        </div>
+                        <button onclick="calculateVoluntary()" class="w-full interactive-btn">Calcular</button>
+                        <div id="voluntary-result" class="hidden p-4 bg-green-50 rounded-lg border border-green-200">
+                            <h4 class="font-semibold text-green-800 mb-2">Resultados de tu ahorro:</h4>
+                            <div class="space-y-1 text-sm">
+                                <div class="flex justify-between">
+                                    <span>Total ahorrado:</span>
+                                    <span id="total-saved" class="font-bold"></span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span>Rendimientos generados:</span>
+                                    <span id="total-earnings" class="font-bold"></span>
+                                </div>
+                                <div class="flex justify-between border-t pt-1">
+                                    <span>Capital final:</span>
+                                    <span id="final-capital" class="font-bold text-green-600"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>    <!-- ========= Footer ========= -->
+    <footer class="bg-slate-800 text-slate-300 text-center p-6 mt-12">
+        <p>&copy; <span id="currentYear"></span> Coltefinanciera. Todos los derechos reservados.</p>
+        <p class="text-sm">Este es un material de educación financiera.</p>
+    </footer>
+
+    <!-- Botón de scroll al inicio -->
+    <div class="scroll-to-top" id="scrollToTop" aria-label="Volver al inicio">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 14L12 9L17 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Menú móvil ---
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Cerrar menú móvil al hacer clic en un enlace
+            mobileNavLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Cerrar menú móvil al hacer scroll
+            window.addEventListener('scroll', function() {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+
+            // --- Lógica para la navegación activa en scroll ---
+            const navLinks = document.querySelectorAll('header nav a.nav-link');
+            const sections = document.querySelectorAll('main section');
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+
+            function changeNav() {
+                let index = sections.length;
+                while(--index && window.scrollY + 100 < sections[index].offsetTop) {}
+                
+                navLinks.forEach((link) => link.classList.remove('active'));
+                const activeLink = document.querySelector(`header nav a.nav-link[href="#${sections[index].id}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+                
+                // Mostrar/ocultar botón de scroll al inicio
+                if (window.scrollY > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            }
+            
+            changeNav();
+            window.addEventListener('scroll', changeNav);
+            
+            // Funcionalidad del botón de scroll al inicio
+            scrollToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Añadir animaciones fade-in a las tarjetas cuando entran en vista
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.card').forEach(card => {
+                observer.observe(card);
+            });
+
+            // --- Lógica de la Calculadora ---
+            const salarioInput = document.getElementById('salario');
+            const resultsContainer = document.getElementById('results-container');
+            const errorMessage = document.getElementById('error-message');
+            const smlmvDisplay = document.getElementById('smlmv-display');
+            const colpensionesAmountEl = document.getElementById('colpensiones-amount');
+            const afpAmountEl = document.getElementById('afp-amount');
+            const colpensionesBar = document.getElementById('colpensiones-bar');
+            const afpBar = document.getElementById('afp-bar');
+            const infoMessage = document.getElementById('info-message');            const SMLMV_2025_ESTIMADO = 1430000; 
+            const UMBRAL_SMLMV = 2.3;
+            const umbralEnPesos = SMLMV_2025_ESTIMADO * UMBRAL_SMLMV;
+            const MAX_COTIZACION_SMLMV = 25;
+            const topeCotizacionEnPesos = SMLMV_2025_ESTIMADO * MAX_COTIZACION_SMLMV;
+
+            const currencyFormatter = new Intl.NumberFormat('es-CO', {
+                style: 'currency',
+                currency: 'COP',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            });
+
+            // Inicializar elementos de la interfaz
+            smlmvDisplay.textContent = currencyFormatter.format(SMLMV_2025_ESTIMADO);
+            document.getElementById('umbral-display').textContent = currencyFormatter.format(umbralEnPesos);
+              // Elementos adicionales para la calculadora mejorada
+            const progressBar = document.getElementById('progressBar');
+            const totalContribution = document.getElementById('total-contribution');
+            const employeeContribution = document.getElementById('employee-contribution');
+            const employerContribution = document.getElementById('employer-contribution');
+            const colpensionesDetail = document.getElementById('colpensiones-detail');
+            const afpDetail = document.getElementById('afp-detail');
+            const colpensionesInfo = document.getElementById('colpensiones-info');
+            const afpInfo = document.getElementById('afp-info');
+            const colpensionesPercent = document.getElementById('colpensiones-percent');
+            const afpPercent = document.getElementById('afp-percent');
+            const quickCalcResult = document.getElementById('quick-calc-result');
+            const calcStatus = document.getElementById('calc-status');
+            
+            let currentSalary = 0;function calcularAportes() {
+                errorMessage.textContent = '';
+                const salarioStr = salarioInput.value.replace(/[^0-9]/g, '');
+
+                if (salarioStr === '') {
+                    resultsContainer.classList.add('opacity-0');
+                    updateProgressBar(0);
+                    return;
+                }
+
+                const salario = parseFloat(salarioStr);
+                currentSalary = salario;
+                salarioInput.value = new Intl.NumberFormat('es-CO').format(salario);
+
+                if (isNaN(salario)) {
+                    errorMessage.textContent = 'Por favor, ingresa un valor numérico.';
+                    resultsContainer.classList.add('opacity-0');
+                    updateProgressBar(0);
+                    return;
+                }
+                if (salario < SMLMV_2025_ESTIMADO) {
+                    errorMessage.textContent = `El IBC debe ser de al menos 1 SMLMV (${currencyFormatter.format(SMLMV_2025_ESTIMADO)}).`;
+                    resultsContainer.classList.add('opacity-0');
+                    updateProgressBar(25);
+                    return;
+                }
+                 if (salario > topeCotizacionEnPesos) {
+                    errorMessage.textContent = `El IBC no puede superar los 25 SMLMV (${currencyFormatter.format(topeCotizacionEnPesos)}).`;
+                    resultsContainer.classList.add('opacity-0');
+                    updateProgressBar(25);
+                    return;
+                }                // Progreso completo si todo está bien
+                updateProgressBar(100);
+                resultsContainer.classList.remove('opacity-0');
+                
+                // Anunciar cambio para accesibilidad
+                announceChange(`Cálculo actualizado para salario de ${currencyFormatter.format(salario)}`);
+
+                let baseColpensiones = 0;
+                let baseAfp = 0;
+                let infoMsgText = '';
+
+                // Calcular distribución de bases
+                if (salario <= umbralEnPesos) {
+                    baseColpensiones = salario;
+                    baseAfp = 0;
+                    infoMsgText = `Como tu ingreso es igual o inferior a 2.3 SMLMV (${currencyFormatter.format(umbralEnPesos)}), la totalidad de tu base de cotización va a Colpensiones. Esto te garantiza una pensión mínima definida por ley.`;
+                } else {
+                    baseColpensiones = umbralEnPesos;
+                    baseAfp = salario - umbralEnPesos;
+                    infoMsgText = `Tu base de cotización se divide: los primeros 2.3 SMLMV van a Colpensiones y el excedente de ${currencyFormatter.format(baseAfp)} va a tu cuenta individual en el Fondo Privado.`;
+                }
+
+                // Calcular aportes totales (16% del salario)
+                const aporteTotal = salario * 0.16;
+                const aporteEmpleado = salario * 0.04;
+                const aporteEmpleador = salario * 0.12;
+
+                // Actualizar desglose de aportes
+                totalContribution.textContent = currencyFormatter.format(aporteTotal);
+                employeeContribution.textContent = currencyFormatter.format(aporteEmpleado);
+                employerContribution.textContent = currencyFormatter.format(aporteEmpleador);
+
+                // Actualizar montos principales
+                colpensionesAmountEl.textContent = currencyFormatter.format(baseColpensiones);
+                afpAmountEl.textContent = currencyFormatter.format(baseAfp);
+                infoMessage.textContent = infoMsgText;
+
+                // Calcular porcentajes para la barra visual
+                const total = baseColpensiones + baseAfp;
+                const colpensionesPercentNum = (baseColpensiones / total) * 100;
+                const afpPercentNum = (baseAfp / total) * 100;
+
+                // Actualizar barras con animación
+                setTimeout(() => {
+                    colpensionesBar.style.width = `${colpensionesPercentNum}%`;
+                    afpBar.style.width = `${afpPercentNum}%`;
+                }, 100);
+                
+                // Actualizar etiquetas de porcentaje
+                colpensionesPercent.textContent = colpensionesPercentNum > 15 ? `${Math.round(colpensionesPercentNum)}%` : '';
+                afpPercent.textContent = afpPercentNum > 15 ? `${Math.round(afpPercentNum)}%` : '';
+
+                // Actualizar detalles específicos
+                updateCalculationDetails(baseColpensiones, baseAfp, salario);
+                
+                // Mostrar información contextual
+                updateContextualInfo(salario, baseColpensiones, baseAfp);
+            }
+              function updateProgressBar(percentage) {
+                if (progressBar) {
+                    progressBar.style.width = `${percentage}%`;
+                }
+                
+                // Activar pasos progresivamente
+                const steps = document.querySelectorAll('.calc-step');
+                if (percentage >= 25) {
+                    activateStep('step2');
+                }
+                if (percentage >= 75) {
+                    activateStep('step3');
+                    activateStep('step4');
+                    activateStep('step5');
+                }
+            }
+            
+            function activateStep(stepId) {
+                const step = document.getElementById(stepId);
+                if (step && !step.classList.contains('active')) {
+                    setTimeout(() => {
+                        step.classList.add('active');
+                    }, 100);
+                }
+            }
+            
+            function updateCalculationDetails(baseColpensiones, baseAfp, salario) {
+                const smlmvMultiple = (salario / SMLMV_2025_ESTIMADO).toFixed(1);
+                
+                if (colpensionesDetail) {
+                    if (baseAfp === 0) {
+                        colpensionesDetail.textContent = `Tu salario completo (${smlmvMultiple} SMLMV) cotiza aquí`;
+                    } else {
+                        colpensionesDetail.textContent = `Máximo permitido: 2.3 SMLMV`;
+                    }
+                }
+                
+                if (afpDetail) {
+                    if (baseAfp === 0) {
+                        afpDetail.textContent = `No aplica para tu nivel salarial`;
+                    } else {
+                        const excedenteMultiple = (baseAfp / SMLMV_2025_ESTIMADO).toFixed(1);
+                        afpDetail.textContent = `Excedente: ${excedenteMultiple} SMLMV adicionales`;
+                    }
+                }
+            }
+            
+            function updateContextualInfo(salario, baseColpensiones, baseAfp) {
+                if (colpensionesInfo) {
+                    if (baseAfp === 0) {
+                        colpensionesInfo.textContent = "Pensión de beneficio definido. El Estado garantiza una mesada mínima según tu historia laboral y salario promedio.";
+                    } else {
+                        colpensionesInfo.textContent = "Una parte garantizada de tu pensión. Funciona como un piso mínimo de protección social.";
+                    }
+                }
+                
+                if (afpInfo) {
+                    if (baseAfp === 0) {
+                        afpInfo.textContent = "No tienes excedente que vaya a cuenta individual. Todo tu aporte se dirige al sistema de prima media.";
+                    } else {
+                        const proyeccionAnual = baseAfp * 0.16 * 12;
+                        afpInfo.textContent = `Tu cuenta individual recibirá aproximadamente ${currencyFormatter.format(proyeccionAnual)} anuales, que generarán rendimientos según el desempeño del fondo.`;
+                    }
+                }
+            }            
+            salarioInput.addEventListener('input', calcularAportes);
+            
+            // Funcionalidad para la comparación rápida de salarios
+            const quickCalcButtons = document.querySelectorAll('.salary-quick-calc');
+            quickCalcButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const multiplier = parseFloat(this.dataset.multiplier);
+                    if (currentSalary > 0) {
+                        const newSalary = Math.round(currentSalary * multiplier);
+                        const previousResults = calculateQuick(currentSalary);
+                        const newResults = calculateQuick(newSalary);
+                        
+                        showQuickComparison(currentSalary, newSalary, previousResults, newResults);
+                        
+                        // Opcional: actualizar la calculadora principal con el nuevo salario
+                        // salarioInput.value = new Intl.NumberFormat('es-CO').format(newSalary);
+                        // calcularAportes();
+                    } else {
+                        quickCalcResult.textContent = "Primero ingresa tu salario actual para hacer comparaciones.";
+                        quickCalcResult.classList.remove('hidden');
+                        setTimeout(() => {
+                            quickCalcResult.classList.add('hidden');
+                        }, 3000);
+                    }
+                });
+            });
+            
+            function calculateQuick(salary) {
+                let baseColpensiones = 0;
+                let baseAfp = 0;
+                
+                if (salary <= umbralEnPesos) {
+                    baseColpensiones = salary;
+                    baseAfp = 0;
+                } else {
+                    baseColpensiones = umbralEnPesos;
+                    baseAfp = salary - umbralEnPesos;
+                }
+                
+                return {
+                    salary,
+                    baseColpensiones,
+                    baseAfp,
+                    totalContribution: salary * 0.16,
+                    employeeContribution: salary * 0.04
+                };
+            }
+            
+            function showQuickComparison(oldSalary, newSalary, oldResults, newResults) {
+                const changeDirection = newSalary > oldSalary ? "📈" : "📉";
+                const changePercent = Math.round(((newSalary - oldSalary) / oldSalary) * 100);
+                const contributionChange = newResults.totalContribution - oldResults.totalContribution;
+                const employeeChange = newResults.employeeContribution - oldResults.employeeContribution;
+                
+                quickCalcResult.innerHTML = `
+                    <div class="bg-yellow-50 border border-yellow-200 p-3 rounded-lg">
+                        <p class="font-semibold text-yellow-800 mb-2">${changeDirection} Con ${currencyFormatter.format(newSalary)} (${changePercent > 0 ? '+' : ''}${changePercent}%)</p>
+                        <div class="text-sm space-y-1">
+                            <div class="flex justify-between">
+                                <span>Aporte total:</span>
+                                <span class="font-medium">${currencyFormatter.format(newResults.totalContribution)} 
+                                    <span class="text-xs">(${contributionChange > 0 ? '+' : ''}${currencyFormatter.format(contributionChange)})</span>
+                                </span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Tu aporte (4%):</span>
+                                <span class="font-medium">${currencyFormatter.format(newResults.employeeContribution)}
+                                    <span class="text-xs">(${employeeChange > 0 ? '+' : ''}${currencyFormatter.format(employeeChange)})</span>
+                                </span>
+                            </div>
+                            <div class="flex justify-between text-xs text-slate-600">
+                                <span>A Colpensiones:</span>
+                                <span>${currencyFormatter.format(newResults.baseColpensiones)}</span>
+                            </div>
+                            <div class="flex justify-between text-xs text-slate-600">
+                                <span>A Fondo Privado:</span>
+                                <span>${currencyFormatter.format(newResults.baseAfp)}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                quickCalcResult.classList.remove('hidden');
+                
+                // Auto-ocultar después de 8 segundos
+                setTimeout(() => {
+                    quickCalcResult.classList.add('hidden');
+                }, 8000);
+            }
+            
+            // Mejorar la experiencia del input de salario
+            salarioInput.addEventListener('focus', function() {
+                this.select();
+            });
+            
+            // Permitir solo números en el input
+            salarioInput.addEventListener('keypress', function(e) {
+                const char = String.fromCharCode(e.which);
+                if (!/[0-9]/.test(char)) {
+                    e.preventDefault();
+                }
+            });
+              // Calcular automáticamente con un salario de ejemplo al cargar
+            setTimeout(() => {
+                salarioInput.value = "3000000";
+                calcularAportes();
+                
+                // Mostrar mensaje de bienvenida
+                showWelcomeMessage();
+            }, 500);
+            
+            function showWelcomeMessage() {
+                const welcomeMsg = document.createElement('div');
+                welcomeMsg.className = 'fixed top-20 right-4 bg-[#00305B] text-white p-4 rounded-lg shadow-lg max-w-sm z-50 welcome-message';
+                welcomeMsg.innerHTML = `
+                    <div class="flex items-start">
+                        <span class="text-2xl mr-2">👋</span>
+                        <div>
+                            <p class="font-semibold text-[#FFDD00] mb-1">¡Bienvenido!</p>
+                            <p class="text-sm">Hemos calculado un ejemplo con $3,000,000. Ingresa tu salario real para ver tu cotización personalizada.</p>
+                        </div>
+                        <button onclick="this.parentElement.parentElement.remove()" class="ml-2 text-[#FFDD00] hover:text-white">×</button>
+                    </div>
+                `;
+                document.body.appendChild(welcomeMsg);
+                
+                // Auto-remover después de 6 segundos
+                setTimeout(() => {
+                    if (welcomeMsg.parentNode) {
+                        welcomeMsg.style.opacity = '0';
+                        setTimeout(() => welcomeMsg.remove(), 300);
+                    }
+                }, 6000);
+            }
+            
+            // Mejorar accesibilidad - anunciar cambios importantes
+            function announceChange(message) {
+                const announcement = document.createElement('div');
+                announcement.setAttribute('aria-live', 'polite');
+                announcement.setAttribute('aria-atomic', 'true');
+                announcement.className = 'sr-only';
+                announcement.textContent = message;
+                document.body.appendChild(announcement);
+                
+                setTimeout(() => announcement.remove(), 1000);
+            }
+              // Actualizar el año dinámicamente en el footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // ========= Funcionalidades adicionales para las nuevas secciones =========
+            
+            // Acordeón para la sección del sistema
+            initializeAccordions();
+            
+            // Animaciones de línea de tiempo
+            initializeTimeline();
+            
+            // Contadores animados
+            initializeCounters();
+            
+            // Anillos de progreso
+            initializeProgressRings();
+        });
+        
+        // ========= Funciones para elementos interactivos =========
+        
+        function initializeAccordions() {
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const accordionItem = this.parentElement;
+                    const accordionContent = accordionItem.querySelector('.accordion-content');
+                    const isActive = accordionItem.classList.contains('active');
+                    
+                    // Cerrar todos los acordeones
+                    document.querySelectorAll('.accordion-item').forEach(item => {
+                        item.classList.remove('active');
+                        item.querySelector('.accordion-content').classList.remove('active');
+                    });
+                    
+                    // Abrir el actual si no estaba activo
+                    if (!isActive) {
+                        accordionItem.classList.add('active');
+                        accordionContent.classList.add('active');
+                    }
+                });
+            });
+        }
+        
+        function initializeTimeline() {
+            const timelineObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, { threshold: 0.3 });
+            
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                timelineObserver.observe(item);
+            });
+        }
+        
+        function initializeCounters() {
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const target = parseFloat(counter.dataset.target);
+                        animateCounter(counter, target);
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            document.querySelectorAll('.stat-counter').forEach(counter => {
+                counterObserver.observe(counter);
+            });
+        }
+        
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.round(current * 10) / 10;
+            }, 40);
+        }
+        
+        function initializeProgressRings() {
+            const ringObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            document.querySelectorAll('.progress-ring').forEach(ring => {
+                ringObserver.observe(ring);
+            });
+        }
+        
+        // ========= Calculadoras adicionales =========
+        
+        function showCesantiasCalculator() {
+            document.getElementById('cesantias-modal').classList.remove('hidden');
+        }
+        
+        function closeCesantiasCalculator() {
+            document.getElementById('cesantias-modal').classList.add('hidden');
+        }
+        
+        function calculateCesantias() {
+            const salaryStr = document.getElementById('cesantias-salary').value.replace(/[^0-9]/g, '');
+            const years = parseFloat(document.getElementById('cesantias-years').value);
+            
+            if (!salaryStr || !years || years <= 0) {
+                alert('Por favor, completa todos los campos correctamente.');
+                return;
+            }
+            
+            const salary = parseFloat(salaryStr);
+            const cesantias = salary * years;
+            const interest = cesantias * 0.12; // 12% de interés anual
+            
+            const formatter = new Intl.NumberFormat('es-CO', {
+                style: 'currency',
+                currency: 'COP',
+                minimumFractionDigits: 0
+            });
+            
+            document.getElementById('cesantias-amount').textContent = 
+                `Cesantías acumuladas: ${formatter.format(cesantias)}`;
+            document.getElementById('cesantias-interest').textContent = 
+                `Intereses anuales (12%): ${formatter.format(interest)}`;
+            
+            document.getElementById('cesantias-result').classList.remove('hidden');
+        }
+        
+        function showVoluntaryCalculator() {
+            document.getElementById('voluntary-modal').classList.remove('hidden');
+        }
+        
+        function closeVoluntaryCalculator() {
+            document.getElementById('voluntary-modal').classList.add('hidden');
+        }
+        
+        function calculateVoluntary() {
+            const monthlyStr = document.getElementById('monthly-voluntary').value.replace(/[^0-9]/g, '');
+            const years = parseInt(document.getElementById('saving-years').value);
+            const returnRate = parseFloat(document.getElementById('expected-return').value) / 100;
+            
+            if (!monthlyStr || !years || !returnRate || years <= 0 || returnRate <= 0) {
+                alert('Por favor, completa todos los campos correctamente.');
+                return;
+            }
+            
+            const monthlyAmount = parseFloat(monthlyStr);
+            const months = years * 12;
+            const monthlyRate = returnRate / 12;
+            
+            // Fórmula de valor futuro de anualidad
+            const futureValue = monthlyAmount * (((1 + monthlyRate) ** months - 1) / monthlyRate);
+            const totalSaved = monthlyAmount * months;
+            const totalEarnings = futureValue - totalSaved;
+            
+            const formatter = new Intl.NumberFormat('es-CO', {
+                style: 'currency',
+                currency: 'COP',
+                minimumFractionDigits: 0
+            });
+            
+            document.getElementById('total-saved').textContent = formatter.format(totalSaved);
+            document.getElementById('total-earnings').textContent = formatter.format(totalEarnings);
+            document.getElementById('final-capital').textContent = formatter.format(futureValue);
+            
+            document.getElementById('voluntary-result').classList.remove('hidden');
+        }
+        
+        function calculateRetirement() {
+            const currentAge = parseInt(document.getElementById('current-age').value);
+            const salaryStr = document.getElementById('current-salary').value.replace(/[^0-9]/g, '');
+            const voluntaryStr = document.getElementById('voluntary-saving').value.replace(/[^0-9]/g, '');
+            
+            if (!currentAge || !salaryStr || currentAge < 18 || currentAge > 60) {
+                alert('Por favor, ingresa una edad válida entre 18 y 60 años.');
+                return;
+            }
+            
+            const salary = parseFloat(salaryStr);
+            const voluntary = parseFloat(voluntaryStr) || 0;
+            const retirementAge = 62; // Asumiendo hombre
+            const yearsToRetirement = retirementAge - currentAge;
+            
+            // Cálculos simplificados
+            const mandatoryMonthly = salary * 0.16;
+            const totalMandatory = mandatoryMonthly * 12 * yearsToRetirement;
+            const totalVoluntary = voluntary * 12 * yearsToRetirement;
+            
+            // Estimación con rendimientos (5% anual promedio)
+            const estimatedCapital = (totalMandatory + totalVoluntary) * 1.5; // Factor simplificado
+            
+            const formatter = new Intl.NumberFormat('es-CO', {
+                style: 'currency',
+                currency: 'COP',
+                minimumFractionDigits: 0
+            });
+            
+            document.getElementById('years-to-retirement').textContent = `${yearsToRetirement} años`;
+            document.getElementById('total-voluntary').textContent = formatter.format(totalVoluntary);
+            document.getElementById('total-mandatory').textContent = formatter.format(totalMandatory);
+            document.getElementById('estimated-capital').textContent = formatter.format(estimatedCapital);
+            
+            // Consejo personalizado
+            let advice = '';
+            if (voluntary === 0) {
+                advice = 'Considera empezar un ahorro voluntario, incluso pequeño, para mejorar tu jubilación.';
+            } else if (voluntary < salary * 0.1) {
+                advice = 'Excelente inicio. Si puedes, trata de ahorrar al menos el 10% de tu salario.';
+            } else {
+                advice = '¡Vas muy bien! Tu disciplina de ahorro te permitirá una jubilación más cómoda.';
+            }
+            
+            document.getElementById('personalized-advice').textContent = advice;
+            document.getElementById('retirement-results').classList.remove('opacity-0');
+        }
+    </script>
+
+</body>
+</html>
