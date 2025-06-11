@@ -17,7 +17,7 @@ La seguridad de nuestros usuarios es nuestra prioridad. Si descubres una vulnera
 ### 🔒 Reporte Responsable
 
 1. **NO** publiques la vulnerabilidad públicamente
-2. Envía un email a: **security@coltefinanciera.com.co**
+2. Envía un email a: **jhonjara@coltefinanciera.com.co**
 3. Incluye la siguiente información:
    - Descripción detallada de la vulnerabilidad
    - Pasos para reproducir el problema
