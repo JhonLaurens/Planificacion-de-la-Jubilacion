@@ -80,7 +80,7 @@ Las actualizaciones de seguridad se comunicarán a través de:
 ## Contacto
 
 Para consultas de seguridad:
-- 📧 **Email**: security@coltefinanciera.com.co
+- 📧 **Email**: jhonjara@coltefinanciera.com.co
 - 🔐 **PGP Key**: [Disponible bajo solicitud]
 - ⚡ **Urgencias**: A través de canales oficiales de Coltefinanciera
 
